@@ -1,0 +1,24 @@
+<!-- 콘솔 출력 결과 예상하기 연습문제 -->
+
+
+<script>
+    let data = {
+        message: '안녕',
+    }
+
+    let app = new Proxy(data, {
+        get(target, prop) {
+            console.log(`data 값에 접근 : ${target[prop]}`);
+        },
+        set(target, prop, value) {
+            console.log(`data 값 변경 : ${value}`);
+            target[prop] = value;
+        }
+    });
+
+    console.log(app.message);       // data 값에 접근 : 안녕
+    app.message='반가워요';         // data 값 변경 : 반가워요
+    console.log(app.message);      // data 값에 접근 : 반가워요
+    console.log(data.message);     // 반가워요
+    
+</script>

@@ -1,0 +1,31 @@
+<div id="app"></div>
+
+<script>
+    // date 객체 생성
+    let data = {
+        a: 10
+    }
+    
+    // proxy의 첫번째 인자에 타겟값(data) 전달
+    // data 객체에 proxy를 걸겠다는 뜻. 이게 먼데?
+    // data의 동작을 모방하는 무언가를 만들겠다.
+    var app = new Proxy(data, {
+        get() {
+            // 객체의 값에 접근했을 때 이쪽이 실행된다.
+            console.log('data 값에 접근');
+            console.log('data.a : ', data.a);   // 10
+        },
+        set() {
+            // 객체의 값을 변경(갱신)하려 하면 이쪽이 실행된다.
+            console.log('data 값 갱신');
+            console.log('data.a : ', data.a);   // 10 (실제로 값이 변경되지는 않음)
+        }
+    })
+</script>
+
+<!-- 
+이대로 실행하면 화면에 아무것도 출력되지 않는다.
+콘솔을 실행하여 app을 입력하고 결과를 확인하면 proxy 객체가 나온다.
+그리고 data를 입력하고 결과를 확인하면 {a:10} 객체와 키와 값이 나온다.
+app.a를 입력하고 결과를 확인하면 문자열 "hi"가 나온다.
+-->

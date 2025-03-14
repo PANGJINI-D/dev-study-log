@@ -1,0 +1,45 @@
+<div id="app">
+    <!--이곳에 뭐가 렌더링 되는지 확인-->
+</div>
+
+<script>
+    // date 객체 생성
+    let data = {
+        message: 'hello'
+    }
+
+    // data가 변경될 때 화면을 자동으로 업데이트 하는 함수
+    // 전달된 값(something)을 #app 내부에 html 요소로 삽입한다.
+    function render(something) {
+        const div = document.querySelector('#app');
+        div.innerHTML = something;
+    }
+    
+    // data 객체에 Proxy 적용
+    var app = new Proxy(data, {
+        get() {
+            // 객체의 값에 접근했을 때 이쪽이 실행된다.
+            console.log('data 값에 접근', data.message)
+        },
+        set(target, prop, newValue) {
+            // 객체의 값을 변경(갱신)하려 하면 이쪽이 실행된다.
+            console.log('data 값 갱신')
+
+            console.log('target:', target); //{message: 'hello'} : data
+            console.log('prop:', prop);     //message : data객체의 키
+            console.log('newValue:', newValue); //변경한 값
+
+            // 객체의 속성 값 동적으로 변경하기
+            // data["message"]="newValue"로 이해하면 된다.
+            target[prop] = newValue;
+            console.log('message : ', data.message);    //'hello' -> 값 변경 없음
+            render(newValue);
+        }
+    })
+</script>
+
+<!-- 
+    처음 화면을 로드하면 화면에는 아무것도 렌더링되지 않는다.
+    app.message = 123123123을 입력하면
+    콘솔에 'data 값 갱신'이 입력되고, 화면에 123123123이 렌더링된다.
+-->
