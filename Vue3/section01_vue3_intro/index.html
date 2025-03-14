@@ -1,0 +1,19 @@
+<!--web에 hi라는 문자열 출력하기-->
+
+<!--Vue를 사용하기 위한 CDN-->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<!--#app 입력 후 탭키 누르면 id가 app인 div 태그가 생성-->
+<div id="app">
+    {{message}}
+</div>
+
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                message: 'hi'
+            }
+        }
+    }).mount('#app');   //id값이 app인 모든 태그 지칭함
+</script>
