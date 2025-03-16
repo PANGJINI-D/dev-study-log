@@ -1,0 +1,32 @@
+<!--버튼으로 cnt 증감 예시-->
+
+<body>
+    <div id="app">
+        <p>{{ count }}</p>
+        <!-- 메서드를 호출하기 위해 v-on이라는 것을 사용 -->
+        <button v-on:click="addCount">+</button>
+    </div>
+</body>
+
+<!--Vue를 사용하기 위한 CDN-->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data: function() {
+            return {
+                count: 0
+            }
+        },
+        methods : {
+            // addCount: function() {
+
+            // }
+            // 위의 형태를 줄여서 아래처럼 사용한다.
+            // 호출 시 count 값이 증가하는 함수
+            addCount() {
+                // this : createApp()내의 count
+                this.count++;
+            }
+        }
+    }).mount('#app');
+</script>

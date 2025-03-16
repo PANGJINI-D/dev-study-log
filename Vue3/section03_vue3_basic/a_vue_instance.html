@@ -1,0 +1,19 @@
+<!--Vue를 사용하기 위한 CDN-->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+</body>
+
+<script>
+    //vue3 application instance
+    Vue.createApp({
+        data() {
+            return {
+                message: 'hi'
+            }
+        }
+    }).mount('#app');   //id값이 app인 모든 태그 지칭함
+</script>
