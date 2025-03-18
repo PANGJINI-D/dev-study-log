@@ -1,0 +1,59 @@
+<!-- v-if 예제 -->
+<body>
+    <div id="app1">
+        <p v-if="score >= 90">우수한 성적입니다!</p>
+        <p v-else-if="score >= 70">좋은 성적입니다!</p>
+        <p v-else>더 노력하세요!</p>
+    </div>
+</body>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                score: 85
+            };
+        }
+    }).mount('#app1');
+</script>
+
+<!-- v-show 예제 -->
+<body>
+    <div id="app2">
+        <button @click="isVisible = !isVisible">토글</button>
+        <!-- isVisible이 false가 될 때마다 display:none 속성이 p 태그에 적용됨 -->
+        <p v-show="isVisible">이 문장은 보였다가 사라집니다.</p>
+    </div>
+</body>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                isVisible: true
+            };
+        }
+    }).mount('#app2');
+</script>
+
+<!-- v-bind 예제 -->
+<body>
+    <div id="app">
+        <img v-bind:src="imageSrc" alt="Vue 로고">
+        <button :disabled="isDisabled">클릭 불가능</button>
+    </div>
+</body>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                imageSrc: 'https://vuejs.org/images/logo.png',
+                isDisabled: true
+            };
+        }
+    }).mount('#app');
+</script>

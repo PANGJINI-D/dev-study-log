@@ -1,37 +1,19 @@
-<!-- v-for를 사용하여 배열에 접근하는 예제 -->
-
 <body>
     <div id="app">
-        <p>v-for로 배열의 요소에 접근</p>
-        <ul>
-            <li v-for="item in items">
-                {{ item }}
-            </li>
-        </ul>
-
-        <p>v-for에서 index 사용하기</p>
-        <ul>
-            <li v-for="(fruit, index) in fruits" :key="fruit">
-                {{index}} : {{fruit}}
-            </li>
-        </ul>
-        <button v-on:click="addItem">과일추가</button>
+      <!-- 입력 값이 Vue 데이터(name)와 자동 동기화 -->
+      <input v-model="name" placeholder="이름을 입력하세요">
+      
+      <p>입력한 이름: {{ name }}</p>
     </div>
-</body>
-
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<script>
+  </body>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
     Vue.createApp({
-        data() {
-            return {
-                items: ['삼성', '네이버', '인프런'],
-                fruits: ['사과', '바나나', '딸기'],
-            };
-        },
-        methods: {
-            addItem() {
-            this.fruits.unshift('샤인머스캣'); // 리스트 앞에 요소 추가
-            }
-        }
+      data() {
+        return {
+          name: '' // 입력된 값이 저장될 데이터
+        };
+      }
     }).mount('#app');
-</script>
+  </script>
+  
