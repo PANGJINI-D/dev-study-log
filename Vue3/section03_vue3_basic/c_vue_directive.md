@@ -255,3 +255,82 @@ v-for에서 index 사용하기
 **출력 결과**
 - 사용자가 input 태그에 이름을 입력하면, name 데이터가 자동으로 업데이트됨
 - 동시에 {{ name }}도 즉시 업데이트 되어 입력한 내용이 바로 화면에 뿌려짐
+<br><br>
+
+
+
+### `2-6) v-on (이벤트 처리)`
+- v-on directive는 <b>이벤트를 감지</b>하고 실행할 함수를 연결할 때 사용
+- <b>단축표현 @</b>로 사용 가능 (@click="함수명")
+<br><br>
+
+**v-on 문법**
+```
+<button v-on:이벤트="메서드"></button>
+<button @이벤트="메서드"></button>
+```
+<br><br>
+
+**👉버튼 클릭 시 숫자 증가 예제**
+```html
+<body>
+    <div id="app">
+        <!-- 버튼을 클릭하면 increaseCount() 메서드가 실행됨 -->
+        <button v-on:click="increaseCount">+</button>  
+        <!-- @click="increaseCount" 이렇게도 가능 -->
+        <p>현재 카운트: {{ count }}</p>
+    </div>
+</body>
+
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                count: 0 // 초기 카운트 값
+            };
+        },
+        methods: {
+            increaseCount() {
+                this.count++; // 클릭할 때마다 count 값 증가
+            }
+        }
+    }).mount('#app');
+</script>
+```
+<br><br>
+
+
+
+### `2-7) v-html (HTML 출력)`
+- v-html은 <b>문자열을 HTML 코드로 해석하여 실제 태그로 렌더링</b><br>
+기본적으로 {{ }} 중괄호는 HTML 태그를 문자 그대로 출력하지만, v-html을 사용하면 태그가 적용됨
+
+**🚨주의: v-html은 XSS에 취약**
+- 사용자 입력값을 직접 v-html에 바인딩하면 안됨
+- 신뢰할 수 없는 데이터는 v-html 대신 {{ }}를 사용하는 것이 안전
+<br><br>
+
+**👉v-html이 반영된 HTML**
+```html
+<body>
+    <div id="app">
+        <!-- rawHtml의 내용이 HTML 태그로 적용됨 -->
+        <p v-html="text"></p>  
+        <p>{{text}}</p>
+    </div>
+</body>
+
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                text: '<strong>굵게 표시된 텍스트</strong>' // HTML 태그 포함된 데이터
+            };
+        }
+    }).mount('#app');
+</script>
+```
+**출력 결과**
+
+**굵게 표시된 텍스트** <br>
+\<strong>굵게 표시된 텍스트\</strong>
