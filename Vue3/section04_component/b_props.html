@@ -1,0 +1,29 @@
+<body>
+    <div id="app">
+        <!-- 부모 컴포넌트에서 자식 컴포넌트로 props를 전달 -->
+        <!-- v-bind를 사용하여 appTitle 데이터를 title이라는 이름으로 전달 -->
+        <app-header v-bind:title="appTitle" v-bind:sub-title="appSubTitle"></app-header>
+    </div>
+</body>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        // 부모 컴포넌트의 데이터
+        data() {
+            return {
+                appTitle: "부모 컴포넌트의 데이터", // 이 데이터를 자식 컴포넌트로 전달
+                appSubTitle: "부모 컴포넌트의 두번째 데이터"
+            }
+        },
+        // 자식 컴포넌트 등록
+        components: {
+            'app-header': {
+                // 템플릿에서 props로 전달받은 title을 사용
+                template: '<h1>{{ title }}</h1><h3>{{ subTitle }}</h3>',
+                // props 정의 (배열 형태로 작성)
+                props: ['title', 'subTitle']
+            }
+        }
+    }).mount('#app');
+</script>
