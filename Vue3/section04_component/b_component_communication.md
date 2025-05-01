@@ -183,3 +183,80 @@ methods: {
     }
 }
 ```
+---  
+<br>
+  
+
+
+### 5️⃣같은 레벨의 컴포넌트 간 데이터 전달 방법
+
+- vue의 컴포넌트에서는 **부모 컴포넌트에서 자식 컴포넌트로 props**가 내려가고, **자식 컴포넌트에서 부모 컴포넌트로 event emit**이 올라감
+- 따라서 같은 레벨의 컴포넌트 간 직접적으로 데이터를 전달하는 것이 불가함
+- **부모 컴포넌트를 중간 다리 역할로 활용**하여 데이터를 간접적으로 전달할 수 있음  
+<br>
+
+✅**실습 예제**  
+```html
+<body>
+    <div id="app">
+        <!-- 부모 컴포넌트에서 자식 컴포넌트로 props 전달(app-header에 message를 전달) -->
+        <app-header v-bind:app-title="message"></app-header>
+
+        <!-- 자식 컴포넌트에서 emit한 event(receive)를 부모가 수신 -->
+        <app-contents v-on:login-event="receive"></app-contents>
+    </div>
+</body>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    // 자식 컴포넌트1 : props를 통해 부모로부터 데이터를 전달받음
+    var appHeader = {
+        props: ['appTitle'],
+        template: `<h2>{{ appTitle }}</h2>`,    // 전달받은 appTitle
+    }
+
+    // 자식 컴포넌트2 : 버튼 클릭 시 event emit
+    var appContents = {
+        template: `
+            <p>
+                <button v-on:click="sendEvent">로그인</button>
+            </p>
+        `,
+        methods: {
+            sendEvent() {
+                // loginEvent라는 이름으로 부모 컴포넌트에 이벤트 전달
+                this.$emit('loginEvent');
+            }
+        }
+    }
+
+    // 루트 컴포넌트(부모 컴포넌트)
+    Vue.createApp({
+        data() {
+            return {
+                message: '' // app-header에 전달한 데이터(초기값은 빈 문자열)
+            }
+        },
+        methods: {
+            // 자식 컴포넌트 app-contents에서 발생한 이벤트 수신 시 receive() 메서드가 실행됨
+            receive() {
+                console.log('이벤트 받음');
+                this.message = '로그인됨';  // app-header로 전달되는 props 값도 갱신
+            }
+        },
+        components: {
+            'app-header' : appHeader,
+            'app-contents' : appContents,
+        }
+    }).mount('#app');
+</script>
+```
+<br>
+
+**데이터 흐름 요약**  
+1. **app-contents 컴포넌트**에서 **사용자 이벤트 발생**(로그인 버튼 클릭)
+2. app-contents는 **$emit('loginEvent')를 통해 app 컴포넌트에 이벤트를 전달**
+3. **app 컴포넌트**가 **loginEvent를 감지하고 receive() 메서드를 실행**시킴
+4. message 값이 업데이트 됨
+5. **업데이트 된 message는 props를 통해 app-header 컴포넌트에 전달**
+6. app-header 컴포넌트는 전달받은 message를 렌더링하여 사용자에게 표시

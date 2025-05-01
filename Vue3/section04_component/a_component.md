@@ -2,9 +2,10 @@
 ## Section04_vue_component :: Vue Component
 
 ### 1️⃣Vue Component
-- <b>컴포넌트(component) : 화면의 영역을 구분하여 개발할 수 있는 뷰의 기능</b>
+- <b>컴포넌트(component) : 화면의 영역을 구분하여 개발할 수 있는 뷰의 기능</b>  
+- 컴포넌트는 트리 구조로 구성되는 것이 일반적임  
 - 컴포넌트 기반으로 화면을 개발하면, 코드의 재사용성이 올라가고 빠르게 화면을 제작할 수 있음
-- 하나의 화면을 여러 개의 파일로 분리하여 관리하는 것이 유지보수에 더 좋음
+- 하나의 화면을 여러 개의 파일로 분리하여 관리하는 것이 유지보수에 더 좋음  
 
 ![component tree image](img_component_tree.png)
 ---

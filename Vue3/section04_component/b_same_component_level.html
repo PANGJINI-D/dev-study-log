@@ -1,0 +1,53 @@
+<body>
+    <div id="app">
+        <!-- 부모 컴포넌트에서 자식 컴포넌트로 props 전달(app-header에 message를 전달) -->
+        <app-header v-bind:app-title="message"></app-header>
+
+        <!-- 자식 컴포넌트에서 emit한 event(receive)를 부모가 수신 -->
+        <app-contents v-on:login-event="receive"></app-contents>
+    </div>
+</body>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    // 자식 컴포넌트1 : props를 통해 부모로부터 데이터를 전달받음
+    var appHeader = {
+        props: ['appTitle'],
+        template: `<h2>{{ appTitle }}</h2>`,    // 전달받은 appTitle
+    }
+
+    // 자식 컴포넌트2 : 버튼 클릭 시 event emit
+    var appContents = {
+        template: `
+            <p>
+                <button v-on:click="sendEvent">로그인</button>
+            </p>
+        `,
+        methods: {
+            sendEvent() {
+                // loginEvent라는 이름으로 부모 컴포넌트에 이벤트 전달
+                this.$emit('loginEvent');
+            }
+        }
+    }
+
+    // 루트 컴포넌트(부모 컴포넌트)
+    Vue.createApp({
+        data() {
+            return {
+                message: '' // app-header에 전달한 데이터(초기값은 빈 문자열)
+            }
+        },
+        methods: {
+            // 자식 컴포넌트 app-contents에서 발생한 이벤트 수신 시 receive() 메서드가 실행됨
+            receive() {
+                console.log('이벤트 받음');
+                this.message = '로그인됨';  // app-header로 전달되는 props 값도 갱신
+            }
+        },
+        components: {
+            'app-header' : appHeader,
+            'app-contents' : appContents,
+        }
+    }).mount('#app');
+</script>
