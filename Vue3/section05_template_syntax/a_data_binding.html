@@ -1,0 +1,40 @@
+<div id="app">
+    <!-- 
+        v-if 예제
+        login이 true일 때만 첫 번째 p 태그가 보인다.
+    -->
+    <p v-if="login">로그인되었습니다.</p>
+    <p v-else>로그인하세요.</p>
+    <button v-on:click="userLogin">로그인</button>
+    <hr>
+
+    <!-- 
+        v-show 예제
+        login이 true일 때만 첫 번째 p 태그가 보인다.
+    -->
+    <p v-show="login">로그인되었습니다.</p>
+    <button v-on:click="userLogin">로그인</button>
+
+    <!-- 
+        v-if와 v-show의 차이
+        v-if는 조건을 만족하지 않으면 돔 트리에 태그가 생성되지 않는다.
+        v-show는 조건을 만족하지 않더라도 태그가 일단 dom 트리에 올라가고, display:none으로 감추어져 보이지 않는 상태이다.
+    -->
+</div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                login: false,
+            }
+        },
+        methods: {
+            // 버튼을 클릭할 때마다 login의 true, false값을 토글하는 함수
+            userLogin() {
+                this.login = !this.login;
+            }
+        }
+    }).mount('#app');
+</script>
