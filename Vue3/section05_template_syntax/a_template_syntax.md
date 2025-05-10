@@ -1,4 +1,4 @@
-## Section04_template_syntax
+## Section05 Template Syntax
 
 ### 1️⃣템플릿 문법
 - 뷰의 템플릿 문법이란 **뷰로 화면을 조작하는 방법**을 의미함
