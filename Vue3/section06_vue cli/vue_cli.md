@@ -36,12 +36,22 @@
     [🔗ESLint와 프리티어](https://joshua1988.github.io/web-development/vuejs/boost-productivity/)  
     [🔗Vue CLI API 문서](https://cli.vuejs.org/config/#vue-config-js)  
 
-### 라이브러리, 파일 임포트 방식 설명
+---
+<br><br>
 
-    [🔗Import 문법 안내 문서](https://joshua1988.github.io/vue-camp/es6+/modules.html#%E1%84%86%E1%85%A9%E1%84%83%E1%85%B2%E1%86%AF%E1%84%92%E1%85%AA%E1%84%8B%E1%85%B4-%E1%84%91%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%84%89%E1%85%A5%E1%86%BC)
 
-### 페이지 로딩 과정 분석
-main.js
-    [Vue Loader](https://vue-loader.vuejs.org/)
-    [Loader?](https://joshua1988.github.io/webpack-guide/concepts/loader.html)
-    [Webpack?](https://joshua1988.github.io/webpack-guide/webpack/what-is-webpack.html)
+
+### 3️⃣라이브러리, 파일 임포트 방식 설명
+
+    [🔗Import 문법 안내 문서](https://joshua1988.github.io/vue-camp/es6+/modules.html#%E1%84%86%E1%85%A9%E1%84%83%E1%85%B2%E1%86%AF%E1%84%92%E1%85%AA%E1%84%8B%E1%85%B4-%E1%84%91%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%84%89%E1%85%A5%E1%86%BC)  
+
+---
+<br><br>
+
+
+
+### 4️⃣페이지 로딩 과정 분석  
+
+    [Vue Loader](https://vue-loader.vuejs.org/)  
+    [Loader?](https://joshua1988.github.io/webpack-guide/concepts/loader.html)  
+    [Webpack?](https://joshua1988.github.io/webpack-guide/webpack/what-is-webpack.html)  
